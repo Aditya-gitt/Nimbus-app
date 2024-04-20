@@ -1,0 +1,20 @@
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(
+    142deg,
+    rgba(57, 216, 248, 1) 0%,
+    rgba(198, 63, 246, 1) 70%,
+    rgba(198, 63, 246, 1) 74%,
+    rgba(57, 216, 248, 1) 100%
+  );
+}
+
+.picker-main {
+  display: block;
+  height: 90%;
+  width: 95%;
+}
