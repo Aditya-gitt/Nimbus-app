@@ -1,0 +1,20 @@
+<div class="container1" [ngStyle] = "{'display': flag ? 'none' : 'flex'}">
+  <div class="block">
+    <div class="input-block">
+      <input type="text" #getName class="input-name">
+      <button (click)="getValue(getName.value)" class="add-button">Add more</button>
+    </div>
+    <div>
+      <button class="Randomize" (click)="hideContent()">Randomize</button>
+    </div>
+  </div>
+  <div class="display" >
+    <div class="display-name" *ngFor="let member of members">
+      {{member}}
+    </div>
+  </div>
+</div>
+<!-- ---------------------------------------------------------------------------------- -->
+<div class="container2" [ngStyle] = "{'display': flag ? 'flex' : 'none'}">
+
+</div>

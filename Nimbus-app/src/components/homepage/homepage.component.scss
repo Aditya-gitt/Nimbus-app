@@ -1,0 +1,61 @@
+
+
+
+.container1 {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+.block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 150px;
+    flex-basis: 75%;
+}
+.input-name {
+    padding: 10px;
+    width: 800px;
+    align-items: center;
+    border-color: black;
+    border-radius: 5px;
+    background-color: transparent;
+}
+.add-button {
+    padding: 10px;
+    border-radius: 8px;
+    margin-left: 10px;
+    color: white;
+    background-color: black;
+}
+.Randomize {
+    padding: 12px;
+    border-radius: 8px; 
+    color: white;
+    background-color: black;
+    margin-top: 50px;
+}
+.display{
+    flex-basis: 25%;
+}
+.display-name {
+    padding: 15px;
+    height: 25px;
+    width: 60%;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: 45px;
+    border-style: outset;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+/* ---------------------------------------------------------------------------------------- */
+
+.container2 {
+    height: 100vh;
+}
+
+.element {
+    position: absolute;
+}
