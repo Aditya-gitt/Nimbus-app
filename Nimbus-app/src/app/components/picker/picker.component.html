@@ -26,9 +26,16 @@
     <div
       class="member-body"
       *ngFor="let member of this.members; index as i"
-      [ngStyle]="getElementsStyle(i)"
+      [ngStyle]="getElementsStyle(i, member)"
     >
       {{ member.name }}
     </div>
+    <button
+      class="button"
+      [disabled]="rondomizeButtonDisabled"
+      (click)="randomize()"
+    >
+      randomize
+    </button>
   </div>
 </main>

@@ -1,5 +1,5 @@
 import { NgFor, NgStyle } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Member } from '../../../models/Member';
 
 @Component({
@@ -9,17 +9,24 @@ import { Member } from '../../../models/Member';
   templateUrl: './picker.component.html',
   styleUrl: './picker.component.scss'
 })
+
+
 export class PickerComponent implements OnInit {
 
   ngOnInit(): void {
-    this.members.push(new Member("Aditya", "0", "0", "0", "0"));
-    this.members.push(new Member("Keyur", "0", "0", "0", "0"));
-    this.members.push(new Member("Pratik", "0", "0", "0", "0"));
+    this.members.push(new Member("Aditya", "0px", "0px", "0px", "0px", "none"));
+    this.members.push(new Member("Keyur", "0px", "0px", "0px", "0px", "none"));
+    this.members.push(new Member("Pratik", "0px", "0px", "0px", "0px", "none"));
+    this.members.push(new Member("Pranav", "0px", "0px", "0px", "0px", "none"));
+    this.members.push(new Member("Pratap", "0px", "0px", "0px", "0px", "none"));
+    this.members.push(new Member("Suman", "0px", "0px", "0px", "0px", "none"));
   }
 
   flag: boolean = false;
   something: number = screen.availHeight;
   members: Member[] = [];
+  selectedMember: Member = new Member("", "", "", "", "", "");
+  rondomizeButtonDisabled: boolean = false;
 
   hideContent = () => {
     this.flag = !this.flag;
@@ -27,19 +34,27 @@ export class PickerComponent implements OnInit {
 
   addMember = (memberName: string) => {
     if (!this.isMemberPresent(memberName) && memberName.length != 0) {
-      this.members.push(new Member(memberName, "0", "0", "0", "0"));
+      this.members.push(new Member(memberName, "0px", "0px", "0px", "0px", "none"));
     }
+
   };
 
-  getElementsStyle(index: number): Object {
+  getElementsStyle(index: number, member: Member): Object {
+    let left: string = member.posLeft;
+    let top: string = member.posTop;
+    if (member.posLeft === "0px") {
+      left = Math.floor(Math.random() * (screen.availHeight - 200)) + "px";
+      top = Math.floor(Math.random() * (screen.availHeight - 200)) + "px";
+      member.posLeft = left;
+      member.posTop = top;
+    }
 
-    let left = Math.floor(Math.random() * (screen.availHeight - 200)) + "px";
-    let top = Math.floor(Math.random() * (screen.availHeight - 200)) + "px";
     return {
       position: "absolute",
       left,
       top,
       "font-size": 20 + "px",
+      display: member.display
     }
   }
 
@@ -50,5 +65,33 @@ export class PickerComponent implements OnInit {
       }
     }
     return false;
+  }
+
+
+  sleep(ms: number): Promise<void> {
+    return new Promise(
+      (resolve) =>
+        setTimeout(resolve, ms));
+  }
+
+
+
+  async randomize(): Promise<void> {
+    this.rondomizeButtonDisabled = true;
+    this.selectedMember.display = "none";
+    var max = 8000;
+    var min = 3000;
+    var time = Date.now() + Math.floor(Math.random() * (max - min + 1) + min);
+    var length = this.members.length - 1;
+    var prepicked = Math.floor(Math.random() * length);
+    while (Date.now() < time) {
+      var current = Math.floor(Math.random() * length);
+      this.members[current].display = "inline";
+      await this.sleep(600);
+      this.members[current].display = "none";
+    }
+    this.selectedMember = this.members[prepicked];
+    this.members[prepicked].display = "inline";
+    this.rondomizeButtonDisabled = false;
   }
 }
